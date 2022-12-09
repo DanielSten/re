@@ -13,16 +13,17 @@ export default {
 <style scoped>
 .btn{
   position: absolute;
+  height: 50px;
   display: block;
   left: 30px;
   right: 30px;
-  bottom: 30px;
+  bottom: 50px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0);
   color: #ffffff;
   font-size: 14px;
   font-family: 'Roboto',Arial,sans-serif;
-  line-height: 1.55;
+  line-height: 44px;
   font-weight: 700;
   border-width: 3px;
   border-radius: 50px;
@@ -30,6 +31,10 @@ export default {
   border-color: #ffffff;
   border-style: solid;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-  box-shadow: 0px 10px 35px 0px rgb(255 255 255 / 60%);
 }
+.btn:hover, .btn:active{
+  background-color: #ffffff;
+  color: #1c0f08;
+}
+
 </style>
