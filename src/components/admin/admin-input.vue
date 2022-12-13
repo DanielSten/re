@@ -133,7 +133,7 @@ export default {
   background-color: #fff;
   border-color: #bdbdbd;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(28, 15, 8, 0.38);
 }
 
 .text-field__input:disabled,
