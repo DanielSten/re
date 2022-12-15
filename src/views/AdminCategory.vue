@@ -1,11 +1,8 @@
 <template>
   <div class="wrapper">
     <class-title>Категории</class-title>
-    <btn-category>Категория 1</btn-category>
-    <btn-category>Категория 1</btn-category>
-    <btn-category>Категория 1</btn-category>
-    <btn-category>Категория 1</btn-category>
-    <btn-without-border>Добавить новую категорию</btn-without-border>
+    <btn-category v-for="section in sections" :section="section"></btn-category>
+    <btn-without-border @click="addCategory">Добавить новую категорию</btn-without-border>
     <button-admin>Сохранить</button-admin>
     <button-admin-cancel class="block_btn-cancel">Отменить изменения</button-admin-cancel>
   </div>
@@ -17,6 +14,7 @@ import btnCategory from "../components/admin/btn-category.vue";
 import btnWithoutBorder from "../components/admin/btn-without-border.vue";
 import buttonAdmin from "../components/admin/button-admin.vue";
 import buttonAdminCancel from "../components/admin/button-admin-cancel.vue";
+import Axios from "axios";
 
 
 
@@ -31,6 +29,39 @@ export default {
     buttonAdminCancel,
 
 
+  },
+  data() {
+    return {
+      sections: [
+        {
+          name: "Категория",
+          background: '',
+        },
+        {
+          name: "Категория",
+          background: '',
+        },
+        {
+          name: "Категория",
+          background: '',
+        },
+      ]
+    }
+  },
+  methods: {
+    addCategory() {
+      Axios.post('/add-section', {
+        token: localStorage.getItem('token'),
+      })
+          .then(response => {
+            if(response.data._status){
+              this.$router.push('/moder-category-editing');
+            } else {
+
+            }
+          })
+          .catch(e => console.error(e));
+    }
   },
 }
 </script>

@@ -1,13 +1,25 @@
 <template>
-  <div class="flex">
-    <div class="category_name"><slot></slot></div>
-    <div class="category_delete"><i class='bx bx-x' ></i></div>
-  </div>
+  <RouterLink to="/moder-category-editing">
+    <div class="flex">
+      <div class="category_name">{{ section.name }}</div>
+      <div class="category_delete"><i class='bx bx-x' ></i></div>
+    </div>
+  </RouterLink>
 </template>
 
 <script>
 export default {
-  name: "btn-category"
+  name: "btn-category",
+  props: {
+    section:{
+      default() {
+        return {
+          name: "Категория",
+          background: '',
+        }
+      },
+    }
+  },
 }
 </script>
 
@@ -18,6 +30,7 @@ export default {
   display: flex;
   justify-content:space-between;
   margin-bottom: 16px;
+  color: #000000;
 }
 
 

@@ -6,6 +6,8 @@ import AdminCategory from "../views/AdminCategory.vue";
 import AdminProduct from "../views/AdminProduct.vue";
 import AdminOtherSettings from "../views/AdminOtherSettings.vue";
 import EditingProduct from "../views/EditingProduct.vue";
+import EditingCategory from "../views/EditingCategory.vue";
+
 
 
 const router = createRouter({
@@ -45,6 +47,11 @@ const router = createRouter({
       path: '/moder-product-editing',
       name: 'EditingProduct',
       component: EditingProduct
+    },
+    {
+      path: '/moder-category-editing',
+      name: 'EditingCategory',
+      component: EditingCategory
     },
   ]
 })

@@ -1,11 +1,13 @@
 <template>
-  <div class="block_product">
-    <div class="product_img"></div>
-    <div class="product_info">
-      <div class="product_info-name">{{ good.name }}</div>
-      <div class="product_info-price">{{ good.cost }}</div>
+  <RouterLink to="/moder-product-editing">
+    <div class="block_product">
+      <div class="product_img"></div>
+      <div class="product_info">
+        <div class="product_info-name">{{ good.name }}</div>
+        <div class="product_info-price">{{ good.cost }}</div>
+      </div>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <script>

@@ -1,23 +1,24 @@
 <template>
   <div class="wrapper">
-    <class-title>Изменение товара</class-title>
+    <div class="flex">
+      <RouterLink to="/moder-product"><div class="btn_back"><i class='bx bx-chevron-left'></i></div></RouterLink>
+      <div class="title">Изменение товара</div>
+    </div>
     <form ref="form" action="">
-      <div class="block_image_product"></div>
+      <input type="file" ref="input" @change="showImagePreview($event)" style="display: none">
+      <div class="block_image_product" @click="$refs.input.click()"></div>
       <admin-input
           required="required"
-          name="password"
           title="Название товара"
           subtitle="Введите наименование товара"
       ></admin-input>
       <admin-input
           required="required"
-          name="password"
           title="450"
           subtitle="Введите стоимость товара (руб)"
       ></admin-input>
       <admin-input
           required="required"
-          name="password"
           title="1 кг"
           subtitle="Укажите вес или количество"
       ></admin-input>
@@ -55,6 +56,24 @@ export default {
     buttonAdminCancel,
     dropDownList,
 
+  },
+  data() {
+    return {
+      imageFile: null,
+      input: null,
+    }
+  },
+  methods: {
+    showImagePreview(event) {
+      this.input = event.target;
+      if (this.input.files && this.input.files[0]) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          this.imageFile = e.target.result;
+        };
+        reader.readAsDataURL(this.input.files[0]);
+      }
+    },
   }
 }
 </script>
@@ -77,5 +96,33 @@ export default {
 .btn-delete{
   background: #004b00;
 }
+.btn-delete:hover{
+  background: #006200;
+}
 
+
+
+.flex{
+  display: flex;
+  margin-bottom: 50px;
+}
+.btn_back{
+  border: 1px solid rgba(224, 224, 224, 1);
+  display: inline-block;
+  border-radius: 4px;
+}
+.bx-chevron-left{
+  font-size: 24px;
+  margin: 10px;
+  color: black;
+}
+.btn_back:hover{
+  background: #dadada;
+}
+.title{
+  margin-left: 20px;
+  line-height: 46px;
+  font-weight: 400;
+  font-size: 25px;
+}
 </style>

@@ -24,6 +24,10 @@ div{
   border: 1px solid rgba(224, 224, 224, 1);
   display: inline-block;
   border-radius: 4px;
+  color: #000000;
+}
+.btn_back:hover{
+  background: #dadada;
 }
 .bx-chevron-left{
   font-size: 24px;

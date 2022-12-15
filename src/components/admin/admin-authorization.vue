@@ -1,11 +1,9 @@
 <template>
   <div class="wrapper">
-    <form ref="form" action="">
+    <form @submit.prevent="onSubmit" ref="form">
       <admin-input
-          v-model="email"
-          type='email'
+          v-model="name"
           required="required"
-          name="email"
           title="Логин"
           subtitle="Введите логин"
       ></admin-input>
@@ -25,6 +23,7 @@
 <script>
 import adminInput from "./admin-input.vue";
 import buttonAdmin from "./button-admin.vue";
+import Axios from "axios";
 
 
 export default {
@@ -38,11 +37,27 @@ export default {
       passType: 'password',
       passwordHasError: false,
       emailHasError: false,
-      email: '',
+      name: '',
       password: '',
-      rememberMe: true,
     }
   },
+  methods: {
+    onSubmit() {
+      Axios.post('/auth', {
+        name: this.name,
+        password: this.password,
+      })
+          .then(response => {
+            if(response.data._status){
+              this.$router.push('/moder-main');
+              localStorage.setItem('token', response.data.token)
+            } else {
+              this.passwordHasError = true
+            }
+          })
+          .catch(e => console.error(e));
+    },
+  }
 }
 </script>
 
