@@ -18,24 +18,9 @@ export default {
     btnWithoutBorder,
 
   },
-  data() {
-    return {
-      sections: [
-        {
-          name: "Категория",
-          background: '',
-        },
-        {
-          name: "Категория",
-          background: '',
-        },
-        {
-          name: "Категория",
-          background: '',
-        },
-      ]
-    }
-  }
+  props: {
+
+  },
 
 }
 </script>

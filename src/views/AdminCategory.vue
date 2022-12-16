@@ -32,20 +32,7 @@ export default {
   },
   data() {
     return {
-      sections: [
-        {
-          name: "Категория",
-          background: '',
-        },
-        {
-          name: "Категория",
-          background: '',
-        },
-        {
-          name: "Категория",
-          background: '',
-        },
-      ]
+      sections: [],
     }
   },
   methods: {
@@ -61,8 +48,18 @@ export default {
             }
           })
           .catch(e => console.error(e));
+    },
+    getInfo () {
+      Axios.get('/all-info')
+          .then(response => {
+            this.sections = response.data.sections;
+          })
+          .catch(e => console.error(e));
     }
   },
+  mounted() {
+    this.getInfo()
+  }
 }
 </script>
 

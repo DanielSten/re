@@ -4,15 +4,16 @@
       <RouterLink to="/moder-category"><div class="btn_back"><i class='bx bx-chevron-left'></i></div></RouterLink>
       <div class="title">Изменение категории</div>
     </div>
-    <form ref="form" @submit.prevent="addImage">
+    <form ref="form" @submit.prevent="onSubmit">
       <input type="file" ref="input" style="display: none">
       <div class="block_image_product" @click="$refs.input.click()" :src="imageFile"></div>
       <admin-input
           required="required"
+          v-model="name"
           title="Название категории"
           subtitle="Введите наименование категории"
       ></admin-input>
-      <button-admin>Сохранить</button-admin>
+      <button-admin type="submit">Сохранить</button-admin>
       <button-admin-cancel class="btn-cancel">Отменить изменения</button-admin-cancel>
       <button-admin class="btn-delete">Удалить категорию</button-admin>
     </form>
@@ -37,7 +38,9 @@ export default {
   },
   data() {
     return {
+      name: '',
       imageFile: null,
+      section: [],
     }
   },
   methods: {
@@ -51,6 +54,20 @@ export default {
           })
           .catch(e => console.error(e));
     },
+    onSubmit() {
+      Axios.post('/edit-section', {
+        token: localStorage.getItem('token'),
+        section_id: this.section.id,
+        new_section_name: this.name,
+      })
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch(e => console.error(e));
+    },
+  },
+  mounted() {
+    this.getInfo()
   }
 }
 </script>

@@ -9,6 +9,7 @@
 
 <script>
 import className from "../components/admin/class-name.vue";
+import Axios from "axios";
 
 
 
@@ -16,6 +17,12 @@ export default {
   name: "AdminMain",
   components: {
     className,
+  },
+  data() {
+    return {
+      settings: {},
+      sections: [],
+    }
   },
 }
 </script>
