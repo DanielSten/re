@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button :style="buttonBackground" :class="{active: isTabActive(this.tabActive)}" @click="$emit('tabSelected')">
+    <button :style="buttonBackground" :class="{active: isActive, 'tab-btn':true, 'greyed-out': isGreyedOut}" @click="$emit('tabSelected')">
       <span class="title">{{ tab.title }}</span>
     </button>
     <div class="tab_body" v-show="isActive">
@@ -26,12 +26,13 @@ export default {
   computed: {
     buttonBackground() {
       return {
-        background: 'url(\''+ this.tab.src +'\') 0 0/100% auto no-repeat',
+        background: 'url(\''+ this.tab.src +'\') center/100% auto no-repeat',
       }
     }
   },
   props: {
     isActive: false,
+    isGreyedOut: false,
     tab: {
       id: '1',
       title: 'Свинина',
@@ -39,9 +40,6 @@ export default {
     },
   },
   methods: {
-    isTabActive(num){
-      return this.tabActive === num;
-    },
   },
 }
 </script>
@@ -52,7 +50,7 @@ export default {
 }
 button{
   width: 100%;
-  height: 10vh;
+  height: 15vh;
   transition: .4s linear;
 }
 .title{
@@ -60,7 +58,7 @@ button{
   color: #efefef;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-shadow: #000000 0 1px 10px;
+  text-shadow: #000000 0 1px 10px, #000000 0 1px 16px, #000000 0 1px 28px;
 }
 img{
   width: 100px;
@@ -69,5 +67,15 @@ img{
 
 .tab_body{
   padding-top: 15px;
+}
+.tab-btn {
+  box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
+  filter: saturate(90%);
+}
+.greyed-out {
+  filter: saturate(70%);
+}
+.active {
+  filter: saturate(100%);
 }
 </style>

@@ -1,6 +1,15 @@
 <template>
-  <div>
-    <tab-btn v-for="tab in tabs" :tab="tab" :isActive="tabActive == tab.id" @tabSelected="tabActive = tab.id"></tab-btn>
+  <h3 class="name">Наша витрина</h3>
+  <div class="tabs-holder">
+    <tab-btn
+        :ref="'tab-btn-id-' + tab.id"
+        v-for="tab in tabs"
+        :tab="tab"
+        :isActive="tabActive == tab.id"
+        :isGreyedOut="(tabActive != 0 && tabActive != tab.id)"
+        @tabSelected="onTabClicked(tab.id)"
+        class="tab"
+    ></tab-btn>
   </div>
 </template>
 
@@ -20,28 +29,59 @@ export default {
         {
           id: 1,
           title: "Готовый шашлык",
-          src: '/icons/cow.jpg',
+          src: '/icons/bbq.jpg',
         },
         {
           id: 2,
           title: "Свинина",
-          src: '/icons/pig.jpg',
+          src: '/icons/pork.jpg',
         },
         {
           id: 3,
           title: "Курица",
+          src: '/icons/chicken.jpg',
         },
         {
           id: 4,
           title: "Говядина",
+          src: '/icons/beef.jpg',
         },
 
       ]
     }
   },
+  methods: {
+    onTabClicked(tabId){
+      if(this.tabActive == tabId){
+        this.tabActive = 0;
+      } else {
+        this.tabActive = tabId;
+        this.$nextTick(() => this.$refs['tab-btn-id-' + tabId][0].$el.scrollIntoView({ behavior: 'smooth' }));
+      }
+    }
+  }
 }
 </script>
 
 <style scoped>
-
+.name{
+  padding: 28px 0 14px;
+  font-weight: 900;
+  font-size: 32px;
+  text-align: center;
+  color: #1c0f08;
+}
+.tabs-holder {
+  padding: 15px 0px 5px;
+}
+.tab {
+  padding-bottom: 10px;
+}
+.title{
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #1c0f08;
+}
 </style>

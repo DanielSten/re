@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="name">Алёнка</div>
+    <h1 class="name">Алёнка</h1>
     <div class="title-header">
       <h3>
         Шашлык и мясо на любой вкус!
@@ -28,7 +28,9 @@ export default {
   height: 100vh;
   padding: 15px 40px;
   color: #ffffff;
-  background: url('./icons/shash.png') 120px 30%/500px 350px no-repeat;
+  background: url('/icons/header.webp') no-repeat;
+  background-size: contain;
+  background-position: 35vw 10vw;
   background-color: #1c0f08;
 }
 .name{
@@ -44,6 +46,7 @@ export default {
   left: 30px;
   right: 30px;
   bottom: 130px;
+  text-shadow: 0 1px 5px rgba(0,0,0,.8);
 }
 h3{
   font-size: 28px;

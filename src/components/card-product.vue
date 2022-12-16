@@ -33,7 +33,7 @@ export default {
 
 <style scoped>
 .block_product{
-  box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
   width: 180px;
   border-radius: 5px;
   overflow: hidden;

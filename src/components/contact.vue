@@ -2,7 +2,7 @@
   <div>
     <div class="wrapper">
       <div class="contact_title">Контакты</div>
-      <div class="contact_number">+7 (964) 513-97-27</div>
+      <a href="tel:+7 (964) 513-97-27" class="contact_number">+7 (964) 513-97-27</a>
       <div class="contact_mail">shash@mail</div>
       <div class="contact_address">Московская область, г. Красногорск, ул. Ново-Никольская, 40</div>
       <div class="contact_time">Пн-Вс: 10:00-21:00</div>

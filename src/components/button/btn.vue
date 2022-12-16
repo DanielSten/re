@@ -1,5 +1,5 @@
 <template>
-  <a class="btn">
+  <a href="tel:+7 (964) 513-97-27" class="btn">
     Заказать
   </a>
 </template>
