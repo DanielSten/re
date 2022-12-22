@@ -1,11 +1,11 @@
 <template>
-  <div class="wrapper">
-    <h1 class="name">Алёнка</h1>
+  <div class="wrapper" :style="{ 'background-image': 'url(' + getSettings.main_image + ')' }">
+    <h1 class="name">{{ getSettings.siteTitle }}</h1>
     <div class="title-header">
-      <h3>
-        Шашлык и мясо на любой вкус!
-      </h3>
-      <p>Пропробуйте нашу Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum delectus dolores, et fugiat ipsam nulla rerum tenetur.</p>
+      <h2>
+        {{ getSettings.siteSubtitle }}
+      </h2>
+      <p>{{ getSettings.siteText }}</p>
     </div>
     <btn></btn>
   </div>
@@ -13,11 +13,15 @@
 
 <script>
 import btn from "./button/btn.vue";
+import {mapGetters} from "vuex";
 
 export default {
   name: "header-home-page",
   components: {
     btn,
+  },
+  computed: {
+    ...mapGetters(['getSettings'])
   }
 }
 </script>
@@ -28,10 +32,10 @@ export default {
   height: 100vh;
   padding: 15px 40px;
   color: #ffffff;
-  background: url('/icons/header.webp') no-repeat;
   background-size: contain;
   background-position: 35vw 10vw;
   background-color: #1c0f08;
+  background-repeat: no-repeat;
 }
 .name{
   font-weight: 900;
@@ -48,7 +52,7 @@ export default {
   bottom: 130px;
   text-shadow: 0 1px 5px rgba(0,0,0,.8);
 }
-h3{
+h2{
   font-size: 28px;
   margin-bottom: 15px;
 }

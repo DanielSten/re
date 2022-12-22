@@ -1,10 +1,10 @@
 <template>
-  <RouterLink to="/moder-product-editing">
+  <RouterLink :to="'/moder-product-editing/' + good.id">
     <div class="block_product">
-      <div class="product_img"></div>
+      <div class="product_img" :style="{ 'background-image': 'url(' + good.photo + ')' }"></div>
       <div class="product_info">
         <div class="product_info-name">{{ good.name }}</div>
-        <div class="product_info-price">{{ good.cost }}</div>
+        <div class="product_info-price">{{ good.cost || 0 }} руб.</div>
       </div>
     </div>
   </RouterLink>
@@ -13,17 +13,8 @@
 <script>
 export default {
   name: "card-product",
-  props: {
-    good: {
-      default() {
-        return {
-          name: "Re",
-          photo: "img358243.jpg",
-          cost: "450 рублей",
-          amount: "1000гр"
-        }
-      }
-    },
+  props:{
+    good: {},
   },
 }
 </script>
@@ -45,6 +36,8 @@ export default {
   background-color: grey;
   width: 100px;
   height: 55px;
+  background-position: center;
+  background-size: cover;
 }
 
 

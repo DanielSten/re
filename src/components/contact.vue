@@ -1,19 +1,24 @@
 <template>
   <div>
     <div class="wrapper">
-      <div class="contact_title">Контакты</div>
-      <a href="tel:+7 (964) 513-97-27" class="contact_number">+7 (964) 513-97-27</a>
-      <div class="contact_mail">shash@mail</div>
-      <div class="contact_address">Московская область, г. Красногорск, ул. Ново-Никольская, 40</div>
-      <div class="contact_time">Пн-Вс: 10:00-21:00</div>
+      <h3 class="contact_title">{{ getSettings.contactTitle }}</h3>
+      <a href="tel:+7 (964) 513-97-27" class="contact_number">{{ getSettings.btnContactTitle }}</a>
+      <div class="contact_mail">{{ getSettings.contactEmail }}</div>
+      <div class="contact_address">{{ getSettings.contactAddress }}</div>
+      <div class="contact_time" style="white-space: pre;">{{ getSettings.contactWorkTime }}</div>
     </div>
     <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/10735/krasnogorsk/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Красногорск</a><a href="https://yandex.ru/maps/10735/krasnogorsk/house/novo_nikolskaya_ulitsa_40/Z04YdAJlTkAPQFtvfXRyeH9nYQ==/?azimuth=6.12365130523948&ll=37.256544%2C55.838990&utm_medium=mapframe&utm_source=maps&z=17.6" style="color:#eee;font-size:12px;position:absolute;top:14px;">Ново-Никольская улица, 40 — Яндекс Карты</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUjnQvt1A" width="100%" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
   </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-  name: "contact"
+  name: "contact",
+  computed: {
+    ...mapGetters(['getSettings'])
+  },
 }
 </script>
 
@@ -27,6 +32,7 @@ export default {
 
 
 .contact_title{
+  display: block;
   font-size: 20px;
   text-transform: uppercase;
   font-weight: 600;

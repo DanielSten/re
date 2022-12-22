@@ -1,14 +1,15 @@
 <template>
   <div>
-    <card-category v-for="section in sections" :section="section"></card-category>
-    <btn-without-border>Добавить НОВЫЙ ТОВАР</btn-without-border>
+    <card-category v-for="section in getSections" :section="section"></card-category>
+    <btn-without-border @click="addProduct">Добавить НОВЫЙ ТОВАР</btn-without-border>
   </div>
 </template>
 
 <script>
 import cardCategory from "./card-category.vue";
 import btnWithoutBorder from "./btn-without-border.vue";
-
+import {mapActions, mapGetters} from "vuex";
+import Axios from "axios";
 
 
 export default {
@@ -18,9 +19,24 @@ export default {
     btnWithoutBorder,
 
   },
-  props: {
-
+  methods:{
+    ...mapActions(['loadData']),
+    addProduct() {
+      Axios.post('/add-product', {
+        token: localStorage.getItem('token'),
+      })
+          .then(response => {
+            if(response.data._status){
+              this.loadData()
+            } else {
+            }
+          })
+          .catch(e => console.error(e));
+    },
   },
+  computed: {
+    ...mapGetters(['getSections'])
+  }
 
 }
 </script>

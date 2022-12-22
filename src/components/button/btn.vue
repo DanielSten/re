@@ -1,12 +1,17 @@
 <template>
-  <a href="tel:+7 (964) 513-97-27" class="btn">
-    Заказать
+  <a :href="'tel:'+ getSettings.numberForOrder" class="btn">
+    {{ getSettings.btnTitle }}
   </a>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-  name: "btn"
+  name: "btn",
+  computed: {
+    ...mapGetters(['getSettings'])
+  }
 }
 </script>
 

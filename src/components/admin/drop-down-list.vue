@@ -1,9 +1,7 @@
 <template>
   <div class="text-field text-field_floating">
-    <select class="text-field__input">
-      <option>Категория 1</option>
-      <option>Категория 2</option>
-      <option>Категория 3</option>
+    <select class="text-field__input" :value="modelValue" @input="onInput($event.target.value)">
+      <option v-for="section in getSections" :value="section.id">{{ section.name }}</option>
     </select>
     <label class="text-field__label" for="email">{{ title }}</label>
     <div class="text-field__caption">{{ subtitle }}</div>
@@ -11,6 +9,8 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "drop-down-list",
   props: {
@@ -44,6 +44,14 @@ export default {
     },
     showCopyIcon: {
       default: false,
+    }
+  },
+  computed: {
+    ...mapGetters(['getSections'])
+  },
+  methods: {
+    onInput (value) {
+      this.$emit('update:modelValue', value)
     }
   },
 }

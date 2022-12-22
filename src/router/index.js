@@ -44,12 +44,12 @@ const router = createRouter({
       component: AdminOtherSettings
     },
     {
-      path: '/moder-product-editing',
+      path: '/moder-product-editing/:id',
       name: 'EditingProduct',
       component: EditingProduct
     },
     {
-      path: '/moder-category-editing',
+      path: '/moder-category-editing/:id',
       name: 'EditingCategory',
       component: EditingCategory
     },

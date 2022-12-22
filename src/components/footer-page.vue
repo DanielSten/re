@@ -1,13 +1,18 @@
 <template>
   <div class="wrapper">
-      <div><i class='bx bxl-instagram-alt'></i></div>
+      <a target="_blank" :href="getSettings.instagram"><i class='bx bxl-instagram-alt'></i></a>
       <RouterLink to="/moder"><div><i class='bx bx-key'></i></div></RouterLink>
   </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-  name: "footer-page"
+  name: "footer-page",
+  computed: {
+    ...mapGetters(['getSettings'])
+  }
 }
 </script>
 
@@ -21,6 +26,7 @@ export default {
 }
 .bxl-instagram-alt{
   font-size: 28px;
+  color: #fff;
 }
 .bx-key{
   position: absolute;

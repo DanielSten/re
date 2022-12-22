@@ -1,13 +1,39 @@
 <template>
   <div class="block_wrapper">
     <div class="title">Изображение на главной странице</div>
-    <div class="block_image"></div>
+    <input type="file" ref="input" @change="showImagePreview($event)" style="display: none" accept="image/*">
+    <div class="block_image" @click="$refs.input.click()" :style="{ 'background-image': 'url(' + getSettings.main_image + ')' }"></div>
   </div>
 </template>
 
 <script>
+import Axios from "axios";
+import {mapActions, mapGetters} from "vuex";
+
 export default {
-  name: "picture-main"
+  name: "picture-main",
+
+  methods: {
+    ...mapActions(['loadData']),
+      showImagePreview(event) {
+        this.input = event.target;
+        if (this.input.files && this.input.files[0]) {
+          let data = new FormData();
+          data.append('token', localStorage.getItem('token'));
+          data.append('picture', this.input.files[0]);
+          Axios.post('/upload-picture/main-page', data)
+              .then(async (response) => {
+                await this.loadData()
+              })
+              .catch(function (response) {
+                console.error(response)
+              });
+        }
+      },
+  },
+  computed: {
+    ...mapGetters(['getSettings'])
+  }
 }
 </script>
 
@@ -28,5 +54,8 @@ export default {
 .block_image{
   height: 200px;
   background: grey;
+  background-position: center;
+  background-size: contain ;
+  background-repeat: no-repeat;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <class-title>Категории</class-title>
-    <btn-category v-for="section in sections" :section="section"></btn-category>
+    <btn-category v-for="section in getSections" :section="section"></btn-category>
     <btn-without-border @click="addCategory">Добавить новую категорию</btn-without-border>
     <button-admin>Сохранить</button-admin>
     <button-admin-cancel class="block_btn-cancel">Отменить изменения</button-admin-cancel>
@@ -15,6 +15,7 @@ import btnWithoutBorder from "../components/admin/btn-without-border.vue";
 import buttonAdmin from "../components/admin/button-admin.vue";
 import buttonAdminCancel from "../components/admin/button-admin-cancel.vue";
 import Axios from "axios";
+import {mapActions, mapGetters} from "vuex";
 
 
 
@@ -32,8 +33,13 @@ export default {
   },
   data() {
     return {
-      sections: [],
+      section: {
+
+      },
     }
+  },
+  computed: {
+    ...mapGetters(['getSections'])
   },
   methods: {
     addCategory() {
@@ -42,24 +48,15 @@ export default {
       })
           .then(response => {
             if(response.data._status){
-              this.$router.push('/moder-category-editing');
+              this.getSections.push(response.data.section)
+              this.$router.push('/moder-category-editing/' + response.data.section.id);
             } else {
 
             }
           })
           .catch(e => console.error(e));
     },
-    getInfo () {
-      Axios.get('/all-info')
-          .then(response => {
-            this.sections = response.data.sections;
-          })
-          .catch(e => console.error(e));
-    }
   },
-  mounted() {
-    this.getInfo()
-  }
 }
 </script>
 

@@ -1,9 +1,9 @@
 <template>
-  <h3 class="name">Наша витрина</h3>
+  <h3 class="name">{{ getSettings.productsTitle }}</h3>
   <div class="tabs-holder">
     <tab-btn
         :ref="'tab-btn-id-' + tab.id"
-        v-for="tab in tabs"
+        v-for="tab in getSections"
         :tab="tab"
         :isActive="tabActive == tab.id"
         :isGreyedOut="(tabActive != 0 && tabActive != tab.id)"
@@ -15,6 +15,7 @@
 
 <script>
 import tabBtn from "./button/tab-btn.vue";
+import {mapGetters} from "vuex";
 
 export default {
   name: "tabs-menu",
@@ -25,30 +26,11 @@ export default {
   data() {
     return{
       tabActive: 0,
-      tabs: [
-        {
-          id: 1,
-          title: "Готовый шашлык",
-          src: '/icons/bbq.jpg',
-        },
-        {
-          id: 2,
-          title: "Свинина",
-          src: '/icons/pork.jpg',
-        },
-        {
-          id: 3,
-          title: "Курица",
-          src: '/icons/chicken.jpg',
-        },
-        {
-          id: 4,
-          title: "Говядина",
-          src: '/icons/beef.jpg',
-        },
 
-      ]
     }
+  },
+  computed: {
+    ...mapGetters(['getSections', 'getSettings'])
   },
   methods: {
     onTabClicked(tabId){

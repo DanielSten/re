@@ -1,13 +1,14 @@
 <template>
   <div>
     <div class="category_name">{{ section.name }}</div>
-    <card-product v-for="good in goods" :good="good"></card-product>
+    <card-product v-for="good in section.goods" :good="good"></card-product>
   </div>
 </template>
 
 <script>
 import cardProduct from "./card-product.vue";
-
+import {mapGetters, mapActions} from "vuex";
+import Axios from "axios";
 
 
 export default {
@@ -17,38 +18,27 @@ export default {
 
   },
   props: {
-    section:{
-      default() {
-        return {
-          name: "Категория",
-          background: '',
-        }
-      },
+    section: {
+      goods: []
     }
   },
-  data() {
-    return{
-      goods: [
-        {
-          name: "Товар",
-          photo: "img358243.jpg",
-          cost: 450.00,
-          amount: "1000гр"
-        },
-        {
-          name: "Товар",
-          photo: "img358243.jpg",
-          cost: 450.00,
-          amount: "1000гр"
-        },
-        {
-          name: "Товар",
-          photo: "img358243.jpg",
-          cost: 450.00,
-          amount: "1000гр"
-        },
-      ],
-    }
+  methods:{
+    ...mapActions(['loadData']),
+    addProduct() {
+      Axios.post('/add-product', {
+        token: localStorage.getItem('token'),
+      })
+          .then(response => {
+            if(response.data._status){
+              this.loadData()
+            } else {
+            }
+          })
+          .catch(e => console.error(e));
+    },
+  },
+  computed: {
+    ...mapGetters(['getSections'])
   }
 
 }

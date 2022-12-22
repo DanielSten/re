@@ -2,8 +2,8 @@
    <div class="block_product">
      <div class="block_product_image" :style="productBackground"></div>
      <div class="block_product_info">
-       <div class="block_product_info-title">{{ product.name }}</div>
-       <div class="block_product_info-price">{{ product.cost }}</div>
+       <h5 class="block_product_info-title">{{ product.name }}</h5>
+       <div class="block_product_info-price">{{ product.cost  || 0  }} руб.</div>
        <div class="block_product_info-weight">{{ product.amount }}</div>
      </div>
    </div>
@@ -51,10 +51,12 @@ export default {
   flex-direction: column;
 }
 .block_product_info-title{
+  display: block;
   font-weight: 700;
   height: 55px;
   font-size: 14px;
   flex: 1 1 auto;
+
 }
 .block_product_info-price{
   font-weight: 700;

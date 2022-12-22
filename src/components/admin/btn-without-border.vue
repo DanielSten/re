@@ -7,7 +7,8 @@
 
 <script>
 export default {
-  name: "btn-without-border"
+  name: "btn-without-border",
+
 }
 </script>
 

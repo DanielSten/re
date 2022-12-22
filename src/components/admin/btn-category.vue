@@ -1,32 +1,18 @@
 <template>
-  <a @click="getInfo" href="/moder-category-editing">
+  <RouterLink :to="'/moder-category-editing/' + section.id">
     <div class="flex">
-      <div class="category_name">{{ sections.name }}</div>
-      <div class="category_delete"><i class='bx bx-x' ></i></div>
+      <div class="category_name">{{ section.name }}</div>
     </div>
-  </a>
+  </RouterLink>
 </template>
 
 <script>
-import Axios from "axios";
 
 export default {
   name: "btn-category",
-  data() {
-    return {
-      sections: [],
-    }
+  props:{
+      section: {},
   },
-  methods: {
-    getInfo () {
-      Axios.get('/all-info')
-          .then(response => {
-            this.sections = response.data.sections;
-          })
-          .catch(e => console.error(e));
-    }
-  },
-
 }
 </script>
 
@@ -37,7 +23,6 @@ export default {
   display: flex;
   justify-content:space-between;
   margin-bottom: 16px;
-  color: #000000;
 }
 
 
@@ -45,6 +30,7 @@ export default {
   font-weight: 400;
   font-size: 16px;
   margin: 16px;
+  color: #000000;
 }
 
 .category_delete{

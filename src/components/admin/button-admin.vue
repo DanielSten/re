@@ -1,5 +1,5 @@
 <template>
-  <button :disabled="disabled"
+  <button :type="type" :disabled="disabled"
   ><slot></slot>
   </button>
 </template>
